@@ -1,0 +1,160 @@
+// 1. Pure function: always returns the same output for the same input
+function add(a, b) {
+  return a + b;
+}
+
+const cons = "constant"; // the value cannot be change
+let hola="hola"; // recommended. the scope is always local to a function, while, for, if..
+
+var hola1="hola"; // not recommended, the scope is always local to a function, but while, for, if.. is global
+hola3 = "hola;" // global variable, not recommended
+
+console.log(add(2, 3)); // Output: 5
+console.log(add(2, 3)); // Output: 5 (same input, same output)
+
+// Impure function: modifies external state
+let counter = 0;
+function increment() {
+  let holain="hola";
+  var holain1="hola";
+  holin1="hola";
+  counter++;
+  return counter;
+}
+
+console.log(increment()); // Output: 1
+console.log(increment()); // Output: 2 (same "input" (implicitly the global state), different output)
+// console.log(holain);
+console.log(holin1);
+
+
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////
+// // 2. Immutability:
+
+// const originalArrayReg = [1, 2, 3];
+
+// // ///////////////////// regular function
+// function mulBy2Loop(arr) {
+//   const newArray = []; // Create a new array to store results
+//   for (let i = 0; i < arr.length; i++) {
+//     newArray.push(arr[i] * 2); // Multiply the element's value by 2
+//   }
+//   return newArray;
+// }
+
+// const originalArray1 = mulBy2Loop (originalArrayReg);
+// console.log(originalArray1);
+
+// ////////////////////// Functional Programming:
+// // Using map to create a new array (immutable operation)
+// // .map mapea un valor a otro
+
+const originalArray = [1, 2, 3];
+const doubledArray = originalArray.map(num => num * 2);
+
+// console.log(originalArray); // Output: [1, 2, 3] (original array is unchanged)
+// console.log(doubledArray);  // Output: [2, 4, 6] (new array created)
+
+// // Directly modifying an array (mutable operation - generally avoided in FP)
+// originalArray.push(4);
+// console.log(originalArray); // Output: [1, 2, 3, 4]
+
+// // //////////////////////////////////////////////////////////////////////////////////////////////////////
+// // //  3. First-Class Functions: Callbacks
+
+// function greet(name) {
+//   return `Hello, ${name}!`;
+// }
+
+// function holaEsp(name) {
+//   return `Hola, ${name}!`;
+// }
+
+// // // // Assigning a function to a variable
+// const sayHello = greet;
+// console.log(greet("Alice")); // Output: Hello, Alice!
+// console.log(sayHello("Alice")); // Output: Hello, Alice!
+
+// // // Passing a function as an argument (higher-order function example)
+// function processGreeting(greetingFunction, personName) {
+//   return greetingFunction(personName);
+// }
+
+// console.log(processGreeting(greet, "Bob")); // Output: Hello, Bob!
+// console.log(processGreeting(holaEsp, "Bob")); // Output: Hello, Bob!
+
+
+// // // Returning a function from a function (higher-order function example)
+// function createMultiplier(factor) {
+//   return function(number) {
+//     return number * factor;
+//   };
+// }
+
+// const double = createMultiplier(2); // factor = 2
+// console.log(double(5));  // number = 10, Output: 10
+
+// const triple = createMultiplier(3); // factor = 3
+// console.log(triple(5));  // number = 5, Output: 15
+
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////
+// // // 4. Higher-Order Functions (map, filter, reduce):
+
+// const numbers = [1, 8, 3, 4, 5];
+
+
+// // map: transforms each element of an array
+// const squaredNumbers = numbers.map(num => num * num); // 1*1, 8*8 ...
+// console.log(squaredNumbers); // Output: [1, 64, 9, 16, 25]
+
+// // filter: creates a new array with elements that pass a condition
+// // 0/2 = 0, sobra 0, 1/2 = 0 residuo es 
+// // % esta funcion se modulo, y es el residuo de la division
+// const evenNumbers = numbers.filter(num => num % 2 === 0);
+// console.log(evenNumbers);  // Output: [8, 4]
+
+// // reduce: applies a function against an accumulator and each element
+// // (from left to right) to reduce it to a single value.
+// const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+// console.log(sum);         // Output: 21
+
+// const sum1 = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 5);
+// console.log(sum1);         // Output: 26
+
+// const sum2 = numbers.reduce((accumulator, currentValue) => accumulator * currentValue, 1);
+// console.log(sum2);         // Output: 480
+
+// const sum3 = numbers.reduce((accumulator, currentValue) => accumulator * currentValue, 0);
+// console.log(sum3);         // Output: 0
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////
+// 5. Composition:
+
+function toUpperCase(str) {
+  return str.toUpperCase();
+}
+
+function addExclamation(str1) {
+  return str1 + "!";
+}
+
+const upper = toUpperCase("hello");
+const exclamation =  addExclamation(upper);
+console.log(exclamation); // Output: HELLO!
+
+// Composing functions manually
+const composedGreeting = addExclamation(toUpperCase("hello"));
+console.log(composedGreeting); // Output: HELLO!
+
+
+// Using a compose function (common in FP libraries)
+function compose(...functions) {
+  return function(arg) {
+    return functions.reduceRight((acc, fn) => fn(acc), arg);
+  };
+}
+
+const enhancedGreeting = compose(addExclamation, toUpperCase);
+console.log(enhancedGreeting("world")); // Output: WORLD!
