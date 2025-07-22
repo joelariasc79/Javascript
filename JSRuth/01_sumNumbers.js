@@ -1,18 +1,21 @@
-// function randomArray(inputArray) {
-//     const outputArray = [];
+// funciones:
+function randomArray(inputArray) {
+    const outputArray = [];
   
-//     for (let i = 0; i < inputArray.length; i++) {
-//       outputArray.push(Math.floor(Math.random() * 10));
-//     }
+    for (let i = 0; i < inputArray.length; i++) {
+      outputArray.push(Math.floor(Math.random() * 10));
+    }
   
-//     return outputArray;
-//   }
+    return outputArray;
+  }
   
-//   // Example usage:
-//   const inputArray = [5, 7, 3, 7, 9];
-//   const outputArray = randomArray(inputArray);
+  // Example usage:
+  const inputArray = [5, 7, 3, 7, 9];
+  const outputArray = randomArray(inputArray);
   
-//   outputArray.forEach(num => console.log(num));
+  outputArray.forEach(num => console.log(num));
+
+// Division:
 
 let a = 5;
 let b = 4;
@@ -20,7 +23,7 @@ let c = a / b;
 console.log("Division Resultado: " + c);
 console.log("");
 
-
+// Modulo: es el residuo de la division
 a = 0;
 b = 4;
 c = a % b
@@ -91,7 +94,7 @@ console.log("Modulo Resultado: 6 % 3: " + c);
 
 
 
-console.log("");
+// Increment ad decrement by 1
 
 a = 6;
 console.log("Numero original: " + a);
@@ -108,6 +111,7 @@ console.log("Despues de a--: " + a);
 console.log("Despues de --a: " + a);
 
 
+// Assignment Operators: 
 console.log("Assignment Operators: ");
 console.log("Using ");
 a = 6;
@@ -125,23 +129,30 @@ console.log("Despues de a /= 4: " + a);
 a %= 4;
 console.log("Despues de a %= 4: " + a);
 
-
+// Modulo: residuo de la division: 
 console.log(67%7);
 console.log(60%7);
 
+
+// Logical Operators: 
 console.log("");
 console.log("Logical Operators: ");
 a = 2;
 b = 5;
 c = a;
+
+// && (AND):
 console.log("&&: significa AND");
 console.log("");
+
 if(a === 2 && b === 5){
     console.log("true: a===2 AND b==5");
 }
 else{
-    console.log("false: a!==2 AND b1!==5");
+    console.log("false: a!==2 OR b1!==5");
 }
+
+
 
 a = 2;
 b = 5;
@@ -152,6 +163,8 @@ if(a === 3 && b === 5){
 else{
     console.log("false: a!==3 OR b1!==5");
 }
+
+
 
 a = 2;
 b = 5;
@@ -165,10 +178,45 @@ else{
 }
 
 
+
+const anotherUser = {
+    id: 2,
+    name: "Bob",
+    isActive: false
+};
+
+let user;
+
+// si a es user es undefined, ya no se evalua si user.id es 2
+// como es un AND, los dos deben ser verdadero y como la primera condicion es falsa entonces la codicion siempre es falsa, 
+// entonces ya no es necesario evualar user.id ==2 
+// Esto a veces se usa como ver si un objecto existe y despues preguntar si ese objeto tiene cierto valor
+// ya que si preguntas directamente si el objeto tiene determinado valor y es el objecto es undefined, el programa generara un error. 
+
+if (user !== undefined && user.id === 2){
+    console.log("The object user has an id of 2");
+}else{
+    console.log("The object user is undefined or does not have id = 2"); 
+}
+
+anotherUser
+if (anotherUser !== undefined && anotherUser.id === 2){
+    console.log("The object anotherUser has an id of 2");
+}else{
+    console.log("The object anotherUser is undefined or des not have id = 2"); 
+}
+
+
+// || (OR):
 a = 2;
 b = 5;
 console.log("||: significa OR");
 console.log("");
+
+// se a es igual a 2, ya no se evalua si b es igual a 5, ya que como la primera condicion es verdadera,
+// aunque b sea deferente a 5, la condicion siempre sera verdadera
+
+
 if(a === 2 || b === 5){
     console.log("true: a===2 OR b==5");
 }
@@ -197,6 +245,7 @@ else{
     console.log("false: a!==3 OR b1!==6");
 }
 
+// ! (NOT):
 a = 2;
 console.log("!: significa not");
 console.log("");
@@ -216,8 +265,11 @@ else{
     console.log("false: not(a===3)");
 }
 
+ // /////////////////////////////////////////////
+
 console.log("");
 console.log("Functions: ");
+
 
 console.log("");
 console.log("Potencia: Forma 1:");
@@ -232,6 +284,7 @@ console.log("2 a la 3 -> 2 * 2 = 4 * 2 = 8: " + c);
 // Math.pow(a, b); es lo mismo que a**b;
 
 
+ // /////////////////////////////////////////////
 console.log("");
 console.log("String Functions: ");
 // String son textos
@@ -241,19 +294,24 @@ console.log(str.length); // Output: 13
 // length: es tamano
 
 
+// Contatenacion de strings:
+// Ejemplo 1:
 str1 = "SELECT * FROM users WHERE name = "
 str2 = "'Juan' OR 1=1;"
+sql = str1 + str2 // "SELECT * FROM users WHERE name = 'Juan' OR 1=1";
+console.log("sql: " + sql)
 
-k = str1 + str2 // "SELECT * FROM users WHERE name = 'Juan' OR 1=1";
-
+// Ejemplo 2:
 const str1 = "Hello, ";
 // str1 = "hola"; si reasigno un valor a un const(constante), el programa genera un error 
 const str2 = "world!";
 let combinedStr1 = str1 + str2; // Hello. world
 // combinedStr1 = "hola"; no hay problema reasignar un valor a un let o var
 
+// Contatenacion de strings:
 // concatenate: concatenar
 console.log(combinedStr1); // Output: "Hello, world!"
+
 
 // // You can also use the `+` operator for concatenation:
 const combinedStr2 = str1.concat(str2);
@@ -262,7 +320,7 @@ console.log(combinedStr2); // Output: "Hello, world!"
 
 
 
-
+// /////////////////////////////////////////////
 
 // Funcion CharAt();
 // char: significa letra
@@ -291,6 +349,7 @@ console.log(str.charCodeAt(0)); // Output: 72 (Unicode of 'H'): 1001000
 
 
 
+// /////////////////////////////////////////////
 
 str = "JavaScript";
 // el substring incluye desde el caracter en la posicion de la izquierda hasta la posicion de la derecha -1
